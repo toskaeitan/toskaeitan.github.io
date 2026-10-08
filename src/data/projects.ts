@@ -17,36 +17,8 @@ export interface Project {
 	tags?: string[];
 }
 
-export const projectsData: Project[] = [
-	{
-		id: "personal-blog",
-		title: "个人博客构建",
-		description:
-			"基于Astro框架开发的现代化个人博客，支持多语言、暗黑模式、响应式设计等功能。",
-		image: "",
-		category: "web",
-		techStack: ["Astro", "TypeScript", "Tailwind CSS", "Svelte"],
-		status: "completed",
-		startDate: "2024-01-01",
-		endDate: "2024-12-01",
-		featured: true,
-		tags: ["Blog", "Personal", "Web Development"],
-	},
-	{
-		id: "day-trading-handbook",
-		title: "日内交易员技术手册",
-		description:
-			"专为日内交易员编写的技术手册，涵盖交易策略、风险管理、技术分析等核心内容。",
-		image: "",
-		category: "other",
-		techStack: ["Writing", "Research", "Financial Analysis"],
-		status: "completed",
-		startDate: "2024-06-01",
-		endDate: "2024-12-01",
-		featured: true,
-		tags: ["金融", "交易", "Technical Analysis", "Risk Management"],
-	},
-];
+// 暂不展示内容；以后可在此添加新条目。
+export const projectsData: Project[] = [];
 
 // 获取项目统计信息
 export const getProjectStats = () => {
