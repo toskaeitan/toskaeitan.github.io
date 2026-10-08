@@ -139,9 +139,9 @@ const getCategoryText = (category: string) => {
                     )}
                   </div>
                   <div class="flex gap-3">
-                    {project.demoUrl && (
+                    {project.liveDemo && (
                       <a 
-                        href={project.demoUrl} 
+                        href={project.liveDemo}
                         target="_blank" 
                         rel="noopener noreferrer"
                         class="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium"
@@ -149,9 +149,9 @@ const getCategoryText = (category: string) => {
                         {i18n(I18nKey.projectsDemo)}
                       </a>
                     )}
-                    {project.sourceUrl && (
+                    {project.sourceCode && (
                       <a 
-                        href={project.sourceUrl} 
+                        href={project.sourceCode}
                         target="_blank" 
                         rel="noopener noreferrer"
                         class="text-gray-600 dark:text-gray-400 hover:underline text-sm font-medium"
@@ -226,9 +226,9 @@ const getCategoryText = (category: string) => {
                         )}
                       </div>
                       <div class="flex gap-3 text-sm">
-                        {project.demoUrl && (
+                        {project.liveDemo && (
                           <a 
-                            href={project.demoUrl} 
+                            href={project.liveDemo}
                             target="_blank" 
                             rel="noopener noreferrer"
                             class="text-blue-600 dark:text-blue-400 hover:underline font-medium"
@@ -236,9 +236,9 @@ const getCategoryText = (category: string) => {
                             {i18n(I18nKey.projectsDemo)}
                           </a>
                         )}
-                        {project.sourceUrl && (
+                        {project.sourceCode && (
                           <a 
-                            href={project.sourceUrl} 
+                            href={project.sourceCode}
                             target="_blank" 
                             rel="noopener noreferrer"
                             class="text-gray-600 dark:text-gray-400 hover:underline font-medium"

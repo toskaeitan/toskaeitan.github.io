@@ -43,7 +43,7 @@ const isBannerSrcObject = (
 		typeof src === "object" &&
 		src !== null &&
 		!Array.isArray(src) &&
-		(src.desktop || src.mobile)
+		Boolean(src.desktop || src.mobile)
 	);
 };
 

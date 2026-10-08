@@ -19,7 +19,7 @@ pnpm dev
 ```sh
 pnpm build    # 构建网站并生成搜索索引
 pnpm preview  # 预览构建结果
-pnpm check    # Astro 类型检查，目前还有原项目遗留错误
+pnpm check    # Astro 类型检查
 ```
 
 ## 内容和配置
@@ -43,7 +43,7 @@ pnpm check    # Astro 类型检查，目前还有原项目遗留错误
 - PR 会自动构建验证；只有 `main` 的更新会部署 GitHub Pages。
 - Dependabot 每周检查依赖；升级前应检查构建与实际页面。
 - 清理当前文件不会缩小已有 Git 历史，也不会清除历史中的副本。本次保留提交历史。
-- `pnpm check` 在维护前有 104 个错误，主要是旧模板类型声明和组件脚本；构建成功不代表类型检查通过。
+- 类型检查已修复；部署必须通过 `pnpm check`，防止旧模板类型问题再次进入线上。
 
 ## 致谢与许可证
 

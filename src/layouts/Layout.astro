@@ -957,50 +957,51 @@ function initCarousel() {
 }
 
 function initTranslate() {
-	if (!siteConfig.translate?.enable || typeof window.translate === 'undefined') return;
+	const translate = window.translate;
+	if (!siteConfig.translate?.enable || !translate) return;
 	
 	// 配置translate.js
-	if (siteConfig.translate.service && window.translate) {
-		window.translate.service.use(siteConfig.translate.service);
+	if (siteConfig.translate.service && translate) {
+		translate.service.use(siteConfig.translate.service);
 	}
 	
-	if (siteConfig.translate.defaultLanguage && window.translate) {
-		window.translate.language.setLocal(siteConfig.translate.defaultLanguage);
+	if (siteConfig.translate.defaultLanguage && translate) {
+		translate.language.setLocal(siteConfig.translate.defaultLanguage);
 	}
 	
-	if (siteConfig.translate.autoDiscriminate && window.translate) {
-		window.translate.setAutoDiscriminateLocalLanguage();
+	if (siteConfig.translate.autoDiscriminate && translate) {
+		translate.setAutoDiscriminateLocalLanguage();
 	}
 	
 	// 设置忽略的类名和标签
-	if (siteConfig.translate.ignoreClasses && window.translate) {
+	if (siteConfig.translate.ignoreClasses && translate) {
 		siteConfig.translate.ignoreClasses.forEach(className => {
-			window.translate.ignore.class.push(className);
+			translate.ignore.class.push(className);
 		});
 	}
 	
-	if (siteConfig.translate.ignoreTags && window.translate) {
+	if (siteConfig.translate.ignoreTags && translate) {
 		siteConfig.translate.ignoreTags.forEach(tagName => {
-			window.translate.ignore.tag.push(tagName);
+			translate.ignore.tag.push(tagName);
 		});
 	}
 	
 	// 不显示默认的select选择框
-	if (siteConfig.translate.showSelectTag === false && window.translate) {
-		window.translate.selectLanguageTag.show = false;
+	if (siteConfig.translate.showSelectTag === false && translate) {
+		translate.selectLanguageTag.show = false;
 	}
 	
 	// 禁用自动保存翻译状态到localStorage
-	if (window.translate) {
-		window.translate.storage.set = function() {
+	if (translate) {
+		translate.storage.set = function() {
 			// 空函数，阻止保存状态
 		};
 	
 		// 启动翻译监听
-		window.translate.listener.start();
+		translate.listener.start();
 	
 		// 执行翻译初始化
-		window.translate.execute();
+		translate.execute();
 	}
 }
 
@@ -1009,7 +1010,9 @@ async function loadAndInitTranslate() {
 	if (!siteConfig.translate?.enable) return;
 	
 	try {
-		await window.loadTranslateScript();
+		const loadTranslateScript = window.loadTranslateScript;
+		if (!loadTranslateScript) return;
+		await loadTranslateScript();
 		initTranslate();
 	} catch (error) {
 		console.error('Failed to load translate.js:', error);
@@ -1064,14 +1067,14 @@ const setup = () => {
 		const tocElement = document.querySelector('table-of-contents');
 		if (tocElement && typeof tocElement.init === 'function') {
 			setTimeout(() => {
-				tocElement.init();
+				tocElement.init?.();
 			}, 100);
 		}
 		
 		// 重新初始化移动端 TOC 组件
 		if (typeof window.mobileTOCInit === 'function') {
 			setTimeout(() => {
-				window.mobileTOCInit();
+				window.mobileTOCInit?.();
 			}, 100);
 		}
 		
@@ -1347,6 +1350,9 @@ if (window.swup) {
 <script>
 // 全局相册功能 - 重构版本
 class GalleryManager {
+	isInitialized: boolean;
+	clickHandler: ((event: MouseEvent) => void) | null;
+
 	constructor() {
 		this.isInitialized = false;
 		this.clickHandler = null;

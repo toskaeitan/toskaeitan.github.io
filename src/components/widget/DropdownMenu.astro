@@ -121,12 +121,12 @@ const hasChildren = processedLink.children && processedLink.children.length > 0;
 <script>
 	// 键盘导航支持
 	document.addEventListener('DOMContentLoaded', function() {
-		const dropdowns = document.querySelectorAll('[data-dropdown]');
+		const dropdowns = document.querySelectorAll<HTMLElement>('[data-dropdown]');
 		
 		dropdowns.forEach(dropdown => {
-			const trigger = dropdown.querySelector('[data-dropdown-trigger]');
-			const menu = dropdown.querySelector('[data-dropdown-menu]');
-			const items = dropdown.querySelectorAll('.dropdown-item');
+			const trigger = dropdown.querySelector<HTMLButtonElement>('[data-dropdown-trigger]');
+			const menu = dropdown.querySelector<HTMLElement>('[data-dropdown-menu]');
+			const items = dropdown.querySelectorAll<HTMLAnchorElement>('.dropdown-item');
 			
 			if (!trigger || !menu) return;
 			
@@ -167,10 +167,12 @@ const hasChildren = processedLink.children && processedLink.children.length > 0;
 		
 		// 点击外部关闭下拉菜单
 		document.addEventListener('click', function(e) {
+			if (!(e.target instanceof Node)) return;
+			const target = e.target;
 			dropdowns.forEach(dropdown => {
-				if (!dropdown.contains(e.target)) {
-					const trigger = dropdown.querySelector('[data-dropdown-trigger]');
-					const menu = dropdown.querySelector('[data-dropdown-menu]');
+				if (!dropdown.contains(target)) {
+					const trigger = dropdown.querySelector<HTMLButtonElement>('[data-dropdown-trigger]');
+					const menu = dropdown.querySelector<HTMLElement>('[data-dropdown-menu]');
 					if (trigger && menu) {
 						closeDropdown(dropdown, trigger, menu);
 					}
@@ -179,7 +181,7 @@ const hasChildren = processedLink.children && processedLink.children.length > 0;
 		});
 	});
 	
-	function toggleDropdown(dropdown, trigger, menu) {
+	function toggleDropdown(dropdown: HTMLElement, trigger: HTMLButtonElement, menu: HTMLElement) {
 		const isOpen = trigger.getAttribute('aria-expanded') === 'true';
 		if (isOpen) {
 			closeDropdown(dropdown, trigger, menu);
@@ -188,13 +190,13 @@ const hasChildren = processedLink.children && processedLink.children.length > 0;
 		}
 	}
 	
-	function openDropdown(dropdown, trigger, menu) {
+	function openDropdown(_dropdown: HTMLElement, trigger: HTMLButtonElement, menu: HTMLElement) {
 		trigger.setAttribute('aria-expanded', 'true');
 		menu.classList.remove('opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]');
 		menu.classList.add('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');
 	}
 	
-	function closeDropdown(dropdown, trigger, menu) {
+	function closeDropdown(_dropdown: HTMLElement, trigger: HTMLButtonElement, menu: HTMLElement) {
 		trigger.setAttribute('aria-expanded', 'false');
 		menu.classList.add('opacity-0', 'invisible', 'pointer-events-none', 'translate-y-[-8px]');
 		menu.classList.remove('opacity-100', 'visible', 'pointer-events-auto', 'translate-y-0');

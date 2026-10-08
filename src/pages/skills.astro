@@ -376,7 +376,7 @@ const allIcons = skillsData.map((skill) => skill.icon).filter(Boolean);
       if (event.persisted && window.__iconifyLoader) {
         // 页面从缓存恢复，重新检查图标状态
         setTimeout(() => {
-          window.__iconifyLoader.load().catch(console.error);
+          window.__iconifyLoader?.load().catch(console.error);
         }, 100);
       }
     });

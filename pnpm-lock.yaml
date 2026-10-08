@@ -171,6 +171,9 @@ importers:
       postcss-nesting:
         specifier: ^13.0.2
         version: 13.0.2(postcss@8.5.6)
+      swup:
+        specifier: 4.8.2
+        version: 4.8.2
 
 packages:
 

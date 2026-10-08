@@ -1,3 +1,5 @@
+import type Swup from "swup";
+
 declare global {
 	interface HTMLElementTagNameMap {
 		"table-of-contents": HTMLElement & {
@@ -6,8 +8,8 @@ declare global {
 	}
 
 	interface Window {
-		// Define swup type directly since @swup/astro doesn't export AstroIntegration
-		swup: any;
+		// Injected by the Swup integration.
+		swup: Swup;
 		pagefind: {
 			search: (query: string) => Promise<{
 				results: Array<{
@@ -15,34 +17,26 @@ declare global {
 				}>;
 			}>;
 		};
-		translate?: {
-			service: {
-				use: (service: string) => void;
-			};
-			language: {
-				setLocal: (language: string) => void;
-			};
-			setAutoDiscriminateLocalLanguage: () => void;
-			ignore: {
-				class: string[];
-				tag: string[];
-			};
-			selectLanguageTag: {
-				show: boolean;
-			};
-			storage: {
-				set: () => void;
-			};
-			listener: {
-				start: () => void;
-			};
-			execute: () => void;
-		};
 		mobileTOCInit?: () => void;
+		semifullScrollHandler?: (() => void) | null;
+		initSemifullScrollDetection?: () => void;
+		closeAnnouncement?: () => void;
+		iconifyLoaded?: boolean;
+		__iconifyLoader?: {
+			load: () => Promise<void>;
+			isLoaded: boolean;
+			addToPreloadQueue: (icons: string[]) => void;
+			onLoad: (callback: () => void) => void;
+		};
+		galleryManager: {
+			isInitialized: boolean;
+			init: () => void;
+			cleanup: () => void;
+		};
 	}
 }
 
-interface SearchResult {
+export interface SearchResult {
 	url: string;
 	meta: {
 		title: string;
