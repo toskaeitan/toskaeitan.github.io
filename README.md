@@ -37,6 +37,8 @@ pnpm check    # Astro 类型检查
 
 已清理模板教程、测试文章、宣传截图和示例歌曲。正式文章与个人资料保留。音乐播放器默认关闭；如需本地播放，添加自己的文件并配置 `MusicPlayer.svelte` 中的 `localPlaylist`。
 
+时间线已从网站下线：页面源码保存在 `src/archived-pages/timeline.astro`，履历数据仍在 `src/data/timeline.ts`。归档目录不会生成网站路由。以后恢复时，将页面移回 `src/pages/` 并重新添加导航入口；这些源码在公开仓库中仍可查看。
+
 ## 维护
 
 - `pnpm-lock.yaml` 应提交；不要提交 `node_modules/`、`dist/`、`.astro/`、环境变量和密钥。
