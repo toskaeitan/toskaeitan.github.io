@@ -24,7 +24,7 @@
 ## 🤝 联系我
 
 ### 社交媒体
-- **GitHub**: [EitanAC](https://github.com/EitanAC)
+- **GitHub**: [toskaeitan](https://github.com/toskaeitan)
 - **Bilibili**: [迷向子群_Moon](https://space.bilibili.com/286241193)
 - **知乎**: [迷向子群](https://www.zhihu.com/people/eitan-7)
 

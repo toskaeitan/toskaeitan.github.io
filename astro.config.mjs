@@ -27,16 +27,10 @@ import { remarkMermaid } from "./src/plugins/remark-mermaid.js";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 // https://astro.build/config
 export default defineConfig({
-	site: "https://eitanac.github.io",
+	site: "https://toskaeitan.github.io",
 
 	base: "/",
 	trailingSlash: "always",
-	// 配置环境变量
-	define: {
-		"import.meta.env.SHOW_ARCHIVED_POSTS": JSON.stringify(
-			process.env.SHOW_ARCHIVED_POSTS || "false",
-		),
-	},
 	integrations: [
 		tailwind({
 			nesting: true,

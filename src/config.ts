@@ -48,17 +48,8 @@ export const siteConfig: SiteConfig = {
 				"/assets/desktop-banner/1.webp",
 				"/assets/desktop-banner/2.webp",
 				"/assets/desktop-banner/3.webp",
-				/* 		"/assets/desktop-banner/4.webp",  */
-				/* 	"/assets/desktop-banner/5.webp", */
-				/* 		"/assets/desktop-banner/6.webp", */
 			], // 桌面横幅图片
-			mobile: [
-				"/assets/mobile-banner/1.webp",
-				"/assets/mobile-banner/2.webp",
-				/*"/assets/mobile-banner/3.webp",
-				"/assets/mobile-banner/4.webp",
-				"/assets/mobile-banner/6.webp",*/
-			], // 移动横幅图片
+			mobile: ["/assets/mobile-banner/1.webp", "/assets/mobile-banner/2.webp"], // 移动横幅图片
 		}, // 使用本地横幅图片
 
 		position: "center", // 等同于 object-position，仅支持 'top', 'center', 'bottom'。默认为 'center'
@@ -119,18 +110,8 @@ export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 			"/assets/desktop-banner/1.webp",
 			"/assets/desktop-banner/2.webp",
 			"/assets/desktop-banner/3.webp",
-			"/assets/desktop-banner/4.webp",
-			"/assets/desktop-banner/5.webp",
-			"/assets/desktop-banner/6.webp",
 		], // 桌面横幅图片
-		mobile: [
-			"/assets/mobile-banner/1.webp",
-			"/assets/mobile-banner/2.webp",
-			"/assets/mobile-banner/3.webp",
-			"/assets/mobile-banner/4.webp",
-			"/assets/mobile-banner/5.webp",
-			"/assets/mobile-banner/6.webp",
-		], // 移动横幅图片
+		mobile: ["/assets/mobile-banner/1.webp", "/assets/mobile-banner/2.webp"], // 移动横幅图片
 	}, // 使用本地横幅图片
 	position: "center", // 壁纸位置，等同于 object-position
 	carousel: {
@@ -149,12 +130,12 @@ export const navBarConfig: NavBarConfig = {
 		// 支持自定义导航栏链接,并且支持多级菜单,3.1版本新加
 		{
 			name: "链接",
-			url: "/links/",
+			url: "#",
 			icon: "material-symbols:link",
 			children: [
 				{
 					name: "GitHub",
-					url: "https://github.com/EitanAC",
+					url: "https://github.com/toskaeitan",
 					external: true,
 					icon: "fa6-brands:github",
 				},
@@ -175,7 +156,7 @@ export const navBarConfig: NavBarConfig = {
 
 		{
 			name: "关于",
-			url: "/content/",
+			url: "/about/",
 			icon: "material-symbols:info",
 			children: [LinkPreset.About, LinkPreset.Friends],
 		},
@@ -214,15 +195,10 @@ export const profileConfig: ProfileConfig = {
 			icon: "fa6-brands:bilibili",
 			url: "https://space.bilibili.com/286241193",
 		},
-		/* 	{
-			name: "Gitee",
-			icon: "mdi:git",
-			url: "https://gitee.com/matsuzakayuki",
-		}, */
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/EitanAC",
+			url: "https://github.com/toskaeitan",
 		},
 		{
 			name: "zhihu",

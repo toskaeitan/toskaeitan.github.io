@@ -15,12 +15,14 @@ pnpm-debug.log*
 
 # environment variables
 .env
-.env.production
+.env.*
+!.env.example
 
 # macOS-specific files
 .DS_Store
 
 .vercel
+.netlify/
 
 package-lock.json
 bun.lockb

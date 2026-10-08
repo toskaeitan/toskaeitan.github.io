@@ -1,69 +1,39 @@
-# 部署说明
+# GitHub Pages 部署
 
-## 环境变量配置
+## 新账户迁移
 
-### 本地开发环境
-在项目根目录创建 `.env` 文件：
-```
-SHOW_ARCHIVED_POSTS=true
-```
+本项目配置的发布地址为 `https://toskaeitan.github.io/`，`base` 为 `/`。
 
-### 生产环境
-在项目根目录创建 `.env.production` 文件：
-```
-SHOW_ARCHIVED_POSTS=false
-```
+1. 在新账户下将仓库名从 `EitanAC.github.io` 改为 `toskaeitan.github.io`：Settings → General → Repository name。
+2. 将验证后的维护改动推送到 `main`，让 `astro.config.mjs` 中的 `site` 与新地址一致。
+3. 在 Settings → Pages 中选择 GitHub Actions 作为部署来源。
+4. 在 Actions 中检查 **Deploy to GitHub Pages**；必要时使用 Run workflow 重新部署。
+5. 打开新网址，检查首页、文章、图片、RSS 和搜索。
 
-## 归档文章控制
+仓库尚未改名时，Pages 默认地址是 `https://toskaeitan.github.io/EitanAC.github.io/`，与本项目的根路径配置不匹配。不要把子路径地址的构建结果当作迁移完成。
 
-### 功能说明
-- 归档的文章存储在 `src/content/posts/_archived/` 文件夹中
-- 通过环境变量 `SHOW_ARCHIVED_POSTS` 控制是否显示归档文章
-- 本地开发时设置为 `true`，可以看到归档文章进行参考
-- 生产环境设置为 `false`，其他人访问时看不到归档文章
+GitHub 不会为旧 Pages 地址 `https://eitanac.github.io/` 自动提供迁移重定向。转移仓库后，旧账户不再有一份独立仓库，不需要额外删除。
 
-### 部署平台配置
+## 部署方式
 
-#### Vercel
-在 Vercel 项目设置中添加环境变量：
-- 名称：`SHOW_ARCHIVED_POSTS`
-- 值：`false`
+`.github/workflows/deploy.yml` 在 `main` 更新或手动触发时构建并发布。PR 验证工作流只构建，不发布网站。
 
-#### Netlify
-在 Netlify 项目设置中添加环境变量：
-- 名称：`SHOW_ARCHIVED_POSTS`
-- 值：`false`
+本地验证：
 
-#### GitHub Pages
-由于 GitHub Pages 不支持环境变量，归档文章将默认隐藏。
-
-#### 其他平台
-根据具体平台的文档配置环境变量。
-
-## 文件结构
-
-```
-src/content/posts/
-├── _archived/           # 归档文件夹（以下划线开头）
-│   ├── _README.md      # 归档说明文档
-│   ├── markdown-tutorial.md
-│   ├── markdown-extended.md
-│   ├── markdown-mermaid.md
-│   ├── video.md
-│   ├── draft.md
-│   ├── guide/
-│   └── bestimageapi/
-└── my-complex-post/     # 当前显示的文章
-    └── index0.md
+```sh
+pnpm install --frozen-lockfile
+pnpm build
+pnpm preview
 ```
 
-## 注意事项
+## 公开与私有
 
-1. `.env` 和 `.env.production` 文件已被 `.gitignore` 忽略，不会提交到版本控制
-2. 归档文件夹以下划线开头，Astro 会忽略这些文件夹
-3. 环境变量配置在 `astro.config.mjs` 和 `src/content/config.ts` 中
-4. 修改环境变量后需要重新构建项目
+GitHub Free 的 GitHub Pages 要求仓库公开。私有化会导致 Pages 网站下线。GitHub Pro 支持从私有仓库发布公开网站；源码私有不等于博客访问受限。
 
----
+参考：[GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)、[仓库转移](https://docs.github.com/en/repositories/creating-and-managing-repositories/transferring-a-repository)。
 
-*最后更新：2025-01-20* 
+## 文章与环境变量
+
+模板归档示例已清理，不再使用 `SHOW_ARCHIVED_POSTS` 开关。正式文章放在 `src/content/posts/`，用 `draft: true` 标记草稿。
+
+不要提交 `.env` 或 `.env.*` 中的敏感配置；允许提交不含真实秘密的 `.env.example`。生产构建和部署的环境变量可在对应平台配置，GitHub Actions 也支持环境变量。

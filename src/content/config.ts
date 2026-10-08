@@ -1,8 +1,5 @@
 import { defineCollection, z } from "astro:content";
 
-// 检查是否显示归档文章的环境变量
-const showArchivedPosts = import.meta.env.SHOW_ARCHIVED_POSTS === "true";
-
 const postsCollection = defineCollection({
 	schema: z.object({
 		title: z.string(),
@@ -26,14 +23,6 @@ const postsCollection = defineCollection({
 		nextTitle: z.string().default(""),
 		nextSlug: z.string().default(""),
 	}),
-	// 添加过滤函数，根据环境变量控制归档文章的显示
-	async transform(entry) {
-		// 如果环境变量设置为false，则隐藏归档文件夹中的文章
-		if (!showArchivedPosts && entry.id.includes("_archived/")) {
-			return null; // 返回null会隐藏这篇文章
-		}
-		return entry;
-	},
 });
 
 const specCollection = defineCollection({
